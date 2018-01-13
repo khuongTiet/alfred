@@ -49,12 +49,11 @@ def find_links(target):
     return [element['href'] for element in soup.find_all('a', href=not_pdf)]
     
 
-#target = 'http://www.ics.uci.edu/~majumder/CG/cg.htm'
-target = 'http://www.ics.uci.edu/~thornton/ics32/Notes/'
-downloads = crawl(target)
+target = 'http://www.ics.uci.edu/~majumder/CG/cg.htm'
+#target = 'http://www.ics.uci.edu/~thornton/ics32/Notes/'
+downloads = find_files(target)
 print(downloads)
 
-"""
 for i in downloads:
     link = i['href']
     if link[0:4] != 'http':
@@ -62,6 +61,5 @@ for i in downloads:
     print("Downloading {}".format(link))
     sleep(2)
     request_download(link)
-"""
 
 print("Alfred is done")
