@@ -43,23 +43,32 @@ def find_files(target):
     soup = BeautifulSoup(page.content, 'html.parser')
     return soup.find_all('a', href=re.compile('.pdf'))
 
+def find_files_json(target):
+    page = requests.get(target, allow_redirects=True)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    files = soup.find_all('a', href=re.compile('.pdf'))
+    return {link.string : link['href'] for link in files}
+
 def find_links(target):
     page = requests.get(target, allow_redirects=True)
     soup = BeautifulSoup(page.content, 'html.parser')
     return [element['href'] for element in soup.find_all('a', href=not_pdf)]
     
+def run_alfred(target):
+    downloads = find_files(target)
+    print(downloads)
 
-target = 'http://www.ics.uci.edu/~majumder/CG/cg.htm'
-#target = 'http://www.ics.uci.edu/~thornton/ics32/Notes/'
-downloads = find_files(target)
-print(downloads)
+    for i in downloads:
+        link = i['href']
+        if link[0:4] != 'http':
+            link = find_path(target) + '/' + link
+        print("Downloading {}".format(link))
+        sleep(2)
+        # request_download(link)
 
-for i in downloads:
-    link = i['href']
-    if link[0:4] != 'http':
-        link = find_path(target) + '/' + link
-    print("Downloading {}".format(link))
-    sleep(2)
-    request_download(link)
+    print("Alfred is done")
 
-print("Alfred is done")
+if __name__ == '__main__':
+    target = 'http://www.ics.uci.edu/~majumder/CG/cg.htm'
+    #target = 'http://www.ics.uci.edu/~thornton/ics32/Notes/'
+    run_alfred(target)
