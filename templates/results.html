@@ -10,6 +10,16 @@
     <div class="row">
       <div class="col-sm-4">
         <h3> Here are the files that Alfred found </h3>
+      </div>
+      <div class="col-sm-4">
+        <h3> You can enter your email here and he'll send it to you </h3>
+      </div>
+      <div class="col-sm-4">
+        <h3> Or you can link them to your Google Drive! </h3>
+      </div>
+    </div>
+    <div class="row secondary-row">
+      <div class="col-sm-4">
         <ul>
           {% for file in downloads %}
           <li><a href={{downloads[file]}}>{{file}}</a></li>
@@ -17,13 +27,11 @@
         </ul>
       </div>
       <div class="col-sm-4">
-        <h3> You can enter your email here and he'll send it to you </h3>
         <p>
           <input type="email" class="form-control" name="email" placeholder="Enter your email">
         </p>
       </div>
       <div class="col-sm-4">
-        <h3> Or you can link them to your Google Drive! </h3>
         <p>
           <a href="#">Google Drive</a>
         </p>
