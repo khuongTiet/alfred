@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+  {% block jumbotron %}
+    <h1>Alfred - Website scraper </h1>
+    <p>
+      Using Python instead of your mouse
+    </p>
+  {% endblock %}
+
+  {% block container %}
+    <form action="{{ url_for('results') }}" method="post">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3> It's easy, just give Alfred a link </h3>
+        </div>
+        <div class="col-sm-4">
+          <h3> Let him know what kind of files you're looking for </h3>
+        </div>
+        <div class="col-sm-4">
+          <h3> Alfred will do the rest and send it to you! </h3>
+        </div>
+      </div>
+      <div class="row secondary-row">
+        <div class="col-sm-4">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-external-link" aria-hidden="true"></i></span>
+            <input type="url" class="form-control" name="target" placeholder="Enter link to page">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group-vertical btn-block" data-toggle="buttons">
+            <label class="btn btn-primary">
+              <input type="checkbox">
+              PDF
+              <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            </label>
+            <label class="btn btn-primary">
+              <input type="checkbox" autocomplete="off">
+              PPT
+              <i class="fa fa-file-powerpoint-o" aria-hidden="true"></i>
+            </label>
+            <label class="btn btn-primary">
+              <input type="checkbox" autocomplete="off">
+              JPG
+              <i class="fa fa-file-image-o" aria-hidden="true"></i>
+            </label>
+            <label class="btn btn-primary">
+              <input type="checkbox" autocomplete="off">
+              DOC
+              <i class="fa fa-file-word-o" aria-hidden="true"></i>
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <p>
+            <button type="submit" class="btn btn-info btn-lg btn-block"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+          </p>
+        </div>
+      </div>
+    </form>
+  {% endblock %}
